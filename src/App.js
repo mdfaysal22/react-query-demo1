@@ -1,10 +1,34 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./Components/Home/Home";
+import RQFetch from "./Components/RQFetch/RQFetch";
+import TraditionFatch from "./Components/TraditionFatch/TraditionFatch";
+import Main from "./layout/Main";
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Main></Main>,
+    children: [
+      {
+        path: '/',
+        element: <Home></Home>
+      },
+      {
+        path: '/traditional-fetch',
+        element: <TraditionFatch></TraditionFatch>
+      },
+      {
+        path: '/rq-fetch',
+        element: <RQFetch></RQFetch>
+      }
+    ]
+  }
+])
 
 function App() {
+
   return (
-    <div>
-      <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam tempora temporibus blanditiis, explicabo saepe recusandae neque reprehenderit deserunt modi suscipit itaque natus dolores! Tenetur quo, magnam esse possimus adipisci totam fugiat soluta autem quod, error ullam perspiciatis reiciendis perferendis et sequi eos sapiente iure dolore facere a inventore accusamus itaque.</h1>
-    </div>
+    <RouterProvider router={router}></RouterProvider>
   );
 }
 
