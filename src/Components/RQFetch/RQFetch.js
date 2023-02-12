@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 
 const RQFetch = () => {
   const dataFetching = () => {
@@ -13,12 +14,24 @@ const RQFetch = () => {
    * 02. a array function to fetching data -> () => {}
    * 03. Accept a Object -> this object accept some property like cacheTime : 5000 (ms),
    */
+  const onSuccess = () => {
+    console.log('Successfully Fetching Data')
+  }
 
-  const { data, isLoading,isFetching, isError, error } = useQuery(
+  const onError = () => {
+    console.log("Failing Data Fetching.")
+  }
+  const { data, isLoading, isError, error } = useQuery(
     ["allPosts"],
     dataFetching,
     {
-        cacheTime: 5000,
+        // cacheTime: 5000,
+        // staleTime: 0, //Default 
+        refetchOnMount: true,
+        refetchOnWindowFocus: true,
+        onError,
+        onSuccess,
+        
     }
   );
 
@@ -32,10 +45,7 @@ const RQFetch = () => {
     <div>
       <h2>RQ data Fetching</h2>
       {data?.data.map((post) => (
-        <div key={post.id}>
-          <h2>{post.author}</h2>
-          <p>{post.post}</p>
-        </div>
+        <Link className="mx-2" key={post.id} to={`/single-post/${post.id}`}>{post.author}</Link>
       ))}
     </div>
   );

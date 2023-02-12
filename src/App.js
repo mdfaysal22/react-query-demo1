@@ -6,6 +6,7 @@ import RQFetch from "./Components/RQFetch/RQFetch";
 import TraditionFatch from "./Components/TraditionFatch/TraditionFatch";
 import Main from "./layout/Main";
 import {ReactQueryDevtools} from 'react-query/devtools';
+import SinglePost from "./Components/SinglePost/SinglePost";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
         path: "/axiosfetch",
         element: <AxiosFetch></AxiosFetch>,
       },
+      {
+        path: "/single-post/:id",
+        element: <SinglePost></SinglePost>
+      }
     ],
   },
 ]);
