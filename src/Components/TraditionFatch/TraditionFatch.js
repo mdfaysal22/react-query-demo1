@@ -19,7 +19,7 @@ const TraditionFatch = () => {
         })
     }, [])
     if(isError) {
-        return <h2>{error}</h2>
+        return <h2>{error?.message}</h2>
     }
     if(isLoading) { 
         return <h1>Loading...</h1>
